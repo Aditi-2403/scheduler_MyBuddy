@@ -2,10 +2,11 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY backend/*.java .
+COPY backend ./backend
+COPY frontend ./frontend
 
-RUN javac *.java
+RUN javac backend/*.java
 
-EXPOSE 10000
+EXPOSE 8081
 
-CMD ["java", "Server"]
+CMD ["java", "backend.Server"]
