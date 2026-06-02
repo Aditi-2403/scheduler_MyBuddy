@@ -1,13 +1,11 @@
-FROM python:3.11-slim
+# Use lightweight nginx server
+FROM nginx:alpine
 
-WORKDIR /app
+# Copy frontend files to nginx public folder
+COPY . /usr/share/nginx/html
 
-COPY backend/requirements.txt ./requirements.txt
+# Expose port 80
+EXPOSE 80
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY backend ./backend
-
-EXPOSE 8000
-
-CMD ["sh", "-c", "uvicorn backend.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
