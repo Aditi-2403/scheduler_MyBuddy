@@ -1,11 +1,11 @@
-# Use lightweight nginx server
-FROM nginx:alpine
+FROM openjdk:17-jdk-slim
 
-# Copy frontend files to nginx public folder
-COPY . /usr/share/nginx/html
+WORKDIR /app
 
-# Expose port 80
-EXPOSE 80
+COPY backend/*.java .
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+RUN javac *.java
+
+EXPOSE 10000
+
+CMD ["java", "Server"]
