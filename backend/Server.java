@@ -11,12 +11,14 @@ import com.sun.net.httpserver.HttpExchange;
 
 public class Server {
     public static void main(String[] args) throws IOException {
-        int port = 8081;
-        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8081"));
+
+        HttpServer server = HttpServer.create(new InetSocketAddress("0.0.0.0", port), 0);
 
         server.createContext("/", new StaticFileHandler());
 
-        System.out.println("🚀 My Buddy Server started at http://localhost:" + port);
+        System.out.println("🚀 My Buddy Server started at http://0.0.0.0:" + port);
         server.setExecutor(null);
         server.start();
     }
