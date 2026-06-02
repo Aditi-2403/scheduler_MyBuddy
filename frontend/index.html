@@ -18,12 +18,14 @@
                 <h1>My<span>Buddy</span></h1>
             </div>
             <p>Startup-grade scheduler & finance tracker.</p>
+
             <div class="login-form" id="login-form">
                 <input type="text" id="username" placeholder="Username">
                 <input type="password" id="password" placeholder="Password">
                 <button class="btn-primary-large" onclick="handleLogin()">Sign In</button>
                 <p class="auth-toggle">Don't have an account? <span onclick="toggleAuth(true)">Create one</span></p>
             </div>
+
             <div class="login-form hidden" id="signup-form">
                 <input type="text" id="reg-username" placeholder="Choose Username">
                 <input type="password" id="reg-password" placeholder="Create Password">
@@ -40,6 +42,7 @@
                 <div class="logo-icon"></div>
                 <h2>My<span>Buddy</span></h2>
             </div>
+
             <nav>
                 <button class="nav-btn active" onclick="showView('dashboard')">Dashboard</button>
                 <button class="nav-btn" onclick="showView('tasks')">Task Planner</button>
@@ -48,6 +51,7 @@
                 <button class="nav-btn" onclick="showView('trip-splitter')">Trip Splitter</button>
                 <button class="nav-btn" onclick="showView('notes')">My Notes</button>
             </nav>
+
             <div class="sidebar-footer">
                 <button id="theme-toggle" class="theme-btn">Dark Mode</button>
             </div>
@@ -57,6 +61,7 @@
         <main class="main-content">
             <header class="top-bar">
                 <h1 id="view-title">Dashboard</h1>
+
                 <div class="header-right">
                     <div class="currency-picker">
                         <select id="currency-select" onchange="updateCurrency()">
@@ -66,15 +71,17 @@
                             <option value="£">GBP (£)</option>
                         </select>
                     </div>
+
                     <div class="user-info">
                         <div class="avatar">AG</div>
                         <span>Aditi Goyal</span>
+                        <button class="theme-btn" onclick="handleLogout()">Logout</button>
                     </div>
                 </div>
             </header>
 
             <div id="view-container" class="view-container">
-                <!-- Simplified Dashboard -->
+                <!-- Dashboard -->
                 <section id="dashboard" class="view active">
                     <div class="dashboard-hero">
                         <h2>Workspace Overview</h2>
@@ -82,18 +89,14 @@
                     </div>
 
                     <div class="dashboard-grid mt-20">
-                        <!-- Important Tasks -->
                         <div class="card glass">
                             <div class="card-header">
                                 <h3>⭐ Important Tasks</h3>
                                 <button class="btn-small" onclick="showView('tasks')">Planner</button>
                             </div>
-                            <div id="important-tasks-summary" class="summary-list">
-                                <!-- Populated via JS -->
-                            </div>
+                            <div id="important-tasks-summary" class="summary-list"></div>
                         </div>
 
-                        <!-- Monthly Health -->
                         <div class="card glass accent-border">
                             <h3>📊 Budget Health</h3>
                             <div class="health-stats mt-20">
@@ -110,15 +113,12 @@
                                 onclick="showView('monthly-expenses')">Manage budget</button>
                         </div>
 
-                        <!-- Mini Calendar -->
                         <div class="card glass span-2">
                             <div class="card-header">
                                 <h3>📅 Weekly Glace</h3>
                                 <span id="mini-cal-month" class="text-accent"></span>
                             </div>
-                            <div id="mini-calendar-grid" class="mini-grid">
-                                <!-- Populated via JS -->
-                            </div>
+                            <div id="mini-calendar-grid" class="mini-grid"></div>
                         </div>
                     </div>
                 </section>
@@ -133,6 +133,7 @@
                                 <input type="checkbox" id="task-important-toggle">
                             </div>
                         </div>
+
                         <div class="input-grid">
                             <input type="text" id="task-name" placeholder="Focus Goal">
                             <input type="date" id="task-date">
@@ -141,6 +142,7 @@
                             <button class="btn-primary" onclick="addTask()">Add to Schedule</button>
                         </div>
                     </div>
+
                     <div id="task-list" class="full-task-list mt-20"></div>
                 </section>
 
@@ -153,9 +155,11 @@
                                 <h2 id="calendar-month-year"></h2>
                                 <button onclick="changeMonth(1)" class="btn-nav">→</button>
                             </div>
+
                             <div class="calendar-days" id="calendar-days"></div>
                             <div class="calendar-grid" id="calendar-grid"></div>
                         </div>
+
                         <div id="calendar-day-panel" class="day-panel glass hidden">
                             <div class="panel-header">
                                 <h3 id="panel-date">Date</h3>
@@ -171,9 +175,11 @@
                     <div class="expense-split-layout">
                         <div class="card glass main-exp-card">
                             <h2>Expense Log</h2>
+
                             <div class="input-grid">
                                 <input type="text" id="exp-desc" placeholder="What was it?">
                                 <input type="number" id="exp-amt" placeholder="Amount">
+
                                 <div class="category-row">
                                     <select id="exp-cat">
                                         <option value="Food">Food 🍔</option>
@@ -183,14 +189,17 @@
                                     </select>
                                     <input type="text" id="custom-cat" placeholder="Custom category...">
                                 </div>
+
                                 <button class="btn-primary" onclick="addMonthlyExpense()">Record Transaction</button>
                             </div>
                         </div>
+
                         <div class="expense-meta">
                             <div class="card glass accent">
                                 <h3>Total Monthly</h3>
                                 <p id="total-monthly-amt" class="hero-amt">$0.00</p>
                             </div>
+
                             <div class="card glass mt-20">
                                 <h3>Breakdown</h3>
                                 <div id="category-list" class="cat-list-scroll"></div>
@@ -204,15 +213,19 @@
                     <div class="trip-container">
                         <div class="card glass">
                             <h2>The Crew</h2>
+
                             <div class="flex-row">
                                 <input type="text" id="trip-person" placeholder="Friend Name">
                                 <button class="btn-primary" onclick="addTripPerson()">Join</button>
                             </div>
+
                             <div id="trip-people-list" class="people-pills mt-20"></div>
                         </div>
+
                         <div class="trip-columns mt-20">
                             <div class="card glass">
                                 <h2>Logged Costs</h2>
+
                                 <div class="input-grid">
                                     <input type="text" id="trip-exp-desc" placeholder="Expense description">
                                     <input type="number" id="trip-exp-amt" placeholder="Amount">
@@ -220,6 +233,7 @@
                                     <button class="btn-primary" onclick="addTripExpense()">Split Equally</button>
                                 </div>
                             </div>
+
                             <div class="card glass">
                                 <h2>Settlement Flow</h2>
                                 <div id="trip-settlements" class="settlement-guide"></div>
@@ -228,26 +242,26 @@
                     </div>
                 </section>
 
-                <!-- My Notes View -->
+                <!-- Notes View -->
                 <section id="notes" class="view">
                     <div class="notes-layout">
                         <div class="card glass">
                             <h2>Capture a Note</h2>
+
                             <div class="input-grid">
                                 <input type="text" id="note-title" placeholder="Note Title">
-                                <textarea id="note-content" placeholder="Write something amazing..."
-                                    rows="5"></textarea>
+                                <textarea id="note-content" placeholder="Write something amazing..." rows="5"></textarea>
                                 <button class="btn-primary" onclick="addNote()">Save Note</button>
                             </div>
                         </div>
-                        <div id="notes-grid" class="notes-grid mt-20">
-                            <!-- Populated via JS -->
-                        </div>
+
+                        <div id="notes-grid" class="notes-grid mt-20"></div>
                     </div>
                 </section>
             </div>
         </main>
     </div>
+
     <script src="script.js"></script>
 </body>
 
